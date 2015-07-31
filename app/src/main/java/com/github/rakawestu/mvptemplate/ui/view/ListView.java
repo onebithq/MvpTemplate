@@ -8,7 +8,7 @@ import java.util.List;
  *
  * @author rakawm
  */
-public interface ListView<T> {
+public interface ListView<T> extends View {
 
     void add(T object);
 

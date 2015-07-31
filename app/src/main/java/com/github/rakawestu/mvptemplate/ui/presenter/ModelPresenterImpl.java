@@ -5,13 +5,16 @@ import android.widget.Toast;
 
 import com.github.rakawestu.mvptemplate.domain.interactor.GetObjectInteractor;
 import com.github.rakawestu.mvptemplate.domain.model.Model;
+import com.github.rakawestu.mvptemplate.ui.view.ListView;
 import com.github.rakawestu.mvptemplate.ui.view.View;
+
+import java.util.List;
 
 /**
  * @author rakawm
  */
 public class ModelPresenterImpl implements ModelPresenter {
-    private View view;
+    private ListView view;
     private Context context;
     private GetObjectInteractor getObjectInteractor;
 
@@ -22,8 +25,8 @@ public class ModelPresenterImpl implements ModelPresenter {
 
     @SuppressWarnings("unchecked")
     @Override
-    public void onModel(Model model) {
-        view.showDetails(model);
+    public void onModel(List<Model> models) {
+
     }
 
     @Override
@@ -47,15 +50,15 @@ public class ModelPresenterImpl implements ModelPresenter {
     }
 
     @Override
-    public void setView(View view) {
+    public void setView(ListView view) {
         this.view = view;
     }
 
     public void getModel() {
         getObjectInteractor.execute(new GetObjectInteractor.Callback() {
             @Override
-            public void onObject(Model model) {
-                view.showDetails(model);
+            public void onObject(List<Model> model) {
+                view.add(model);
             }
 
             @Override

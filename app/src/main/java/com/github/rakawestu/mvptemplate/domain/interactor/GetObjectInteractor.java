@@ -2,6 +2,8 @@ package com.github.rakawestu.mvptemplate.domain.interactor;
 
 import com.github.rakawestu.mvptemplate.domain.model.Model;
 
+import java.util.List;
+
 /**
  * Interactor interface for getting object.
  * @author rakawm
@@ -11,7 +13,7 @@ public interface GetObjectInteractor {
 
     interface Callback {
 
-        void onObject(Model model);
+        void onObject(List<Model> models);
 
         void onError();
     }

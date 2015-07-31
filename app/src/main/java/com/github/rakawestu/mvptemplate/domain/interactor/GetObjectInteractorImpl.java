@@ -6,6 +6,8 @@ import com.github.rakawestu.mvptemplate.domain.repository.exception.BaseExceptio
 import com.github.rakawestu.mvptemplate.executor.InteractorExecutor;
 import com.github.rakawestu.mvptemplate.executor.MainThreadExecutor;
 
+import java.util.List;
+
 import timber.log.Timber;
 
 /**
@@ -30,12 +32,12 @@ public class GetObjectInteractorImpl extends AbstractInteractor implements GetOb
     @Override
     public void run() {
         try {
-            final Model model = repository.getModel();
+            final List<Model> models = repository.getModel();
 
             getMainThreadExecutor().execute(new Runnable() {
                 @Override
                 public void run() {
-                    callback.onObject(model);
+                    callback.onObject(models);
                 }
             });
         } catch (BaseException e){

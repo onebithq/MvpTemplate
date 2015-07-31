@@ -15,6 +15,9 @@ import com.github.rakawestu.mvptemplate.app.BaseFragment;
 import com.github.rakawestu.mvptemplate.domain.model.Model;
 import com.github.rakawestu.mvptemplate.ui.adapter.ModelAdapter;
 import com.github.rakawestu.mvptemplate.ui.presenter.ModelPresenter;
+import com.github.rakawestu.mvptemplate.ui.view.ListView;
+
+import java.util.List;
 
 import javax.inject.Inject;
 
@@ -25,7 +28,7 @@ import timber.log.Timber;
 /**
  * @author rakawm
  */
-public class ModelDetailFragment extends BaseFragment implements com.github.rakawestu.mvptemplate.ui.view.View {
+public class ModelDetailFragment extends BaseFragment implements ListView<Model> {
 
     @Inject
     ModelPresenter presenter;
@@ -61,14 +64,28 @@ public class ModelDetailFragment extends BaseFragment implements com.github.raka
 
     @Override
     public void showDetails(Object object) {
-        Model model = (Model)object;
-        adapter.add(model);
-        adapter.notifyDataSetChanged();
+
     }
 
     private void initializeRecyclerView(){
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
+    }
+
+    @Override
+    public void add(Model object) {
+
+    }
+
+    @Override
+    public void add(List<Model> objects) {
+        adapter.add(objects);
+        adapter.notifyDataSetChanged();
+    }
+
+    @Override
+    public void remove(Model object) {
+
     }
 }
